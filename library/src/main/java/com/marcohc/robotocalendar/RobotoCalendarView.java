@@ -31,7 +31,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -392,31 +391,22 @@ public class RobotoCalendarView extends LinearLayout {
     }
 
     private void setUpMonthLayout() {
-        String dateText = new DateFormatSymbols(Locale.getDefault()).getMonths()[currentCalendar.get(Calendar.MONTH)];
-        dateText = dateText.substring(0, 1).toUpperCase() + dateText.subSequence(1, dateText.length());
-        Calendar calendar = Calendar.getInstance();
-        if (currentCalendar.get(Calendar.YEAR) == calendar.get(Calendar.YEAR)) {
-            dateTitle.setText(dateText);
-        } else {
-            dateTitle.setText(String.format("%s %s", dateText, currentCalendar.get(Calendar.YEAR)));
-        }
+        String[] months = getResources().getStringArray(R.array.months);
+        String month = months[currentCalendar.get(Calendar.MONTH)];
+        dateTitle.setText(String.format("%s, %s", month, currentCalendar.get(Calendar.YEAR)));
     }
 
     private void setUpWeekDaysLayout() {
         TextView dayOfWeek;
         String dayOfTheWeekString;
-        String[] weekDaysArray = new DateFormatSymbols(Locale.getDefault()).getWeekdays();
+        String[] weekDaysArray = getResources().getStringArray(R.array.days);
         int length = weekDaysArray.length;
-        for (int i = 1; i < length; i++) {
-            dayOfWeek = rootView.findViewWithTag(DAY_OF_THE_WEEK_TEXT + getWeekIndex(i, currentCalendar));
-            dayOfTheWeekString = weekDaysArray[i];
-            if (shortWeekDays) {
-                dayOfTheWeekString = checkSpecificLocales(dayOfTheWeekString, i);
-            } else {
-                dayOfTheWeekString = dayOfTheWeekString.substring(0, 1).toUpperCase() + dayOfTheWeekString.substring(1, 3);
+        for (int i = 0; i < length; i++) {
+            dayOfWeek = rootView.findViewWithTag(DAY_OF_THE_WEEK_TEXT + (i + 1));
+            if (dayOfWeek != null) {
+                dayOfTheWeekString = weekDaysArray[i];
+                dayOfWeek.setText(dayOfTheWeekString);
             }
-
-            dayOfWeek.setText(dayOfTheWeekString);
         }
     }
 

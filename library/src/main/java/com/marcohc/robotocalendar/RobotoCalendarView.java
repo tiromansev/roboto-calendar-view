@@ -410,7 +410,7 @@ public class RobotoCalendarView extends LinearLayout {
         }
     }
 
-    private void setUpDaysOfMonthLayout() {
+    public void setUpDaysOfMonthLayout() {
 
         TextView dayOfTheMonthText;
         View circleImage1;
@@ -488,7 +488,7 @@ public class RobotoCalendarView extends LinearLayout {
         }
     }
 
-    private void updateView() {
+    public void updateView() {
         setUpMonthLayout();
         setUpWeekDaysLayout();
         setUpDaysOfMonthLayout();

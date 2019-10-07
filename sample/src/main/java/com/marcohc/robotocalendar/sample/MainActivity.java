@@ -108,4 +108,20 @@ public class MainActivity extends AppCompatActivity implements RobotoCalendarLis
         Toast.makeText(this, "onLeftButtonClick!", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong("DATE", robotoCalendarView.getSelectedDay().getTime());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+            long date = savedInstanceState.getLong("DATE");
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(date);
+            robotoCalendarView.selectDay(calendar.getTime());
+        }
+    }
 }

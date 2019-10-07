@@ -18,6 +18,7 @@ package com.marcohc.robotocalendar;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -234,6 +235,24 @@ public class RobotoCalendarView extends LinearLayout {
     @Nullable
     public Date getSelectedDay() {
         return lastSelectedDayCalendar.getTime();
+    }
+
+    public void selectDay(@NonNull Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+
+        // Clear previous current day mark
+        clearSelectedDay();
+
+        // Store current values as last values
+        lastSelectedDayCalendar = calendar;
+
+        // Mark current day as selected
+        ViewGroup dayOfTheMonthBackground = getDayOfMonthBackground(calendar);
+        dayOfTheMonthBackground.setBackgroundResource(R.drawable.circle);
+
+        TextView dayOfTheMonth = getDayOfMonthText(calendar);
+        dayOfTheMonth.setTextColor(ContextCompat.getColor(getContext(), R.color.roboto_calendar_selected_day_font));
     }
 
     public void markDayAsSelectedDay(@NonNull Date date) {

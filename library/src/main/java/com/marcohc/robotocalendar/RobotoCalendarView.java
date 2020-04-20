@@ -10,6 +10,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class RobotoCalendarView extends LinearLayout {
     private static final String DAY_OF_THE_MONTH_CIRCLE_IMAGE_1 = "dayOfTheMonthCircleImage1";
     private static final String DAY_OF_THE_MONTH_CIRCLE_IMAGE_2 = "dayOfTheMonthCircleImage2";
 
+    private GestureDetector gestureDetector;
     private TextView dateTitle;
     private ImageView leftButton;
     private ImageView rightButton;
@@ -190,21 +192,26 @@ public class RobotoCalendarView extends LinearLayout {
         rootView = inflate.inflate(R.layout.roboto_calendar_view_layout, this, true);
         findViewsById(rootView);
         setUpEventListeners();
+        CalendarGesturesDetector calendarGestureListener = new CalendarGesturesDetector() {
+            @Override
+            public void onRightToLeftSwipe() {
+                super.onRightToLeftSwipe();
+                rightButton.performClick();
+            }
+
+            @Override
+            public void onLeftToRightSwipe() {
+                super.onLeftToRightSwipe();
+                leftButton.performClick();
+            }
+        };
+        gestureDetector = new GestureDetector(getContext(), calendarGestureListener);
 
         if (getContext() instanceof Activity) {
-            View gestureView = rootView.findViewById(R.id.gestureView);
-            gestureView.setOnTouchListener(new CalendarTouchListener((Activity) getContext()) {
-                @Override
-                public void onRightToLeftSwipe() {
-                    super.onRightToLeftSwipe();
-                    rightButton.performClick();
-                }
-
-                @Override
-                public void onLeftToRightSwipe() {
-                    super.onLeftToRightSwipe();
-                    leftButton.performClick();
-                }
+            View gestureView = rootView.findViewById(R.id.robotoCalendarDateTitleContainer);
+            gestureView.setOnTouchListener((view, motionEvent) -> {
+                gestureDetector.onTouchEvent(motionEvent);
+                return true;
             });
         }
 

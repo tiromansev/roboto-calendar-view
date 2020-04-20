@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/robotoCalendarDateTitleContainer"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/roboto_calendar_month_height"
     android:clickable="true"
     android:focusable="true"
     android:gravity="center_vertical"
@@ -14,9 +14,9 @@
         android:id="@+id/leftButton"
         style="@style/RobotoCalendarMonthArrow"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/roboto_calendar_padding"
-        android:layout_marginRight="@dimen/roboto_calendar_padding"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/roboto_calendar_padding"
+        android:paddingRight="@dimen/roboto_calendar_padding"
         app:srcCompat="@drawable/ic_arrow_left"
         tools:ignore="ContentDescription" />
 
@@ -34,9 +34,9 @@
         android:id="@+id/rightButton"
         style="@style/RobotoCalendarMonthArrow"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/roboto_calendar_padding"
-        android:layout_marginRight="@dimen/roboto_calendar_padding"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/roboto_calendar_padding"
+        android:paddingRight="@dimen/roboto_calendar_padding"
         app:srcCompat="@drawable/ic_arrow_right"
         tools:ignore="ContentDescription" />
 </LinearLayout>

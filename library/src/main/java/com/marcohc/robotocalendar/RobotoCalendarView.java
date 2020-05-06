@@ -100,7 +100,7 @@ public class RobotoCalendarView extends LinearLayout {
             if (robotoCalendarListener == null) {
                 throw new IllegalStateException("You must assign a valid RobotoCalendarListener first!");
             } else {
-                robotoCalendarListener.onDayLongClick(calendar.getTime());
+                robotoCalendarListener.onDayLongClick(dayOfTheMonthText, calendar.getTime());
             }
             return true;
         }
@@ -549,7 +549,7 @@ public class RobotoCalendarView extends LinearLayout {
 
         void onDayClick(Date date);
 
-        void onDayLongClick(Date date);
+        void onDayLongClick(View view, Date date);
 
         void onRightButtonClick();
 

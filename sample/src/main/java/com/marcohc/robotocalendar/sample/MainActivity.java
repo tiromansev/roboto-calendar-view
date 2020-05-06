@@ -18,6 +18,7 @@ package com.marcohc.robotocalendar.sample;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements RobotoCalendarLis
     }
 
     @Override
-    public void onDayLongClick(Date date) {
+    public void onDayLongClick(View view, Date date) {
         Toast.makeText(this, "onDayLongClick: " + date, Toast.LENGTH_SHORT).show();
     }
 

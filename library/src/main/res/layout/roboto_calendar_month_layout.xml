@@ -12,7 +12,6 @@
 
     <ImageView
         android:id="@+id/leftButton"
-        style="@style/RobotoCalendarMonthArrow"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingLeft="@dimen/roboto_calendar_padding"

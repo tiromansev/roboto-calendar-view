@@ -461,7 +461,6 @@ public class RobotoCalendarView extends LinearLayout {
             // Apply styles
             dayOfTheMonthText.setBackgroundResource(android.R.color.transparent);
             dayOfTheMonthText.setTypeface(null, Typeface.NORMAL);
-            dayOfTheMonthText.setTextColor(ContextCompat.getColor(getContext(), R.color.roboto_calendar_day_of_the_month_font));
             dayOfTheMonthContainer.setBackgroundResource(android.R.color.transparent);
             dayOfTheMonthContainer.setOnClickListener(null);
             dayOfTheMonthBackground.setBackgroundResource(android.R.color.transparent);

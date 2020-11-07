@@ -151,31 +151,33 @@ public class RobotoCalendarView extends LinearLayout {
         int firstDayWeekPosition = calendar.getFirstDayOfWeek();
         int dayPosition = calendar.get(Calendar.DAY_OF_WEEK);
 
-        if (firstDayWeekPosition == 1) {
-            return dayPosition - 1;
-        } else {
+        //не учитываем первый день недели локали
+//        if (firstDayWeekPosition == 1) {
+//            return dayPosition - 1;
+//        } else {
 
             if (dayPosition == 1) {
                 return 6;
             } else {
                 return dayPosition - 2;
             }
-        }
+//        }
     }
 
     private static int getWeekIndex(int weekIndex, Calendar currentCalendar) {
         int firstDayWeekPosition = currentCalendar.getFirstDayOfWeek();
 
-        if (firstDayWeekPosition == 1) {
-            return weekIndex;
-        } else {
+        //не учитываем первый день недели локали
+//        if (firstDayWeekPosition == 1) {
+//            return weekIndex;
+//        } else {
 
             if (weekIndex == 1) {
                 return 7;
             } else {
                 return weekIndex - 1;
             }
-        }
+//        }
     }
 
     private static boolean areInTheSameDay(@NonNull Calendar calendarOne, @NonNull Calendar calendarTwo) {
